@@ -1,12 +1,12 @@
 [package]
-name = "gradepilot"
+name = "gradescope"
 version = "1.0.0"
-description = "GradePilot - 学业成绩管理"
-authors = ["GradePilot"]
+description = "GradeScope - 学业成绩管理"
+authors = ["GradeScope"]
 edition = "2021"
 
 [lib]
-name = "gradepilot_lib"
+name = "gradescope_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 [build-dependencies]

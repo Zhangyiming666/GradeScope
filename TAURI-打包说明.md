@@ -1,6 +1,6 @@
-# GradePilot 桌面版打包说明（Tauri）
+# GradeScope 桌面版打包说明（Tauri）
 
-GradePilot 现在可以打包成原生桌面应用：
+GradeScope 现在可以打包成原生桌面应用：
 
 - **macOS**：`.app` + `.dmg`
 - **Windows**：`.exe`（NSIS 安装包）/ `.msi`
@@ -30,8 +30,8 @@ pnpm exec tauri build --bundles app,dmg
 ```
 
 构建产物位置：
-- App：`src-tauri/target/release/bundle/macos/GradePilot.app`
-- DMG：`src-tauri/target/release/bundle/dmg/GradePilot_1.0.0_aarch64.dmg`
+- App：`src-tauri/target/release/bundle/macos/GradeScope.app`
+- DMG：`src-tauri/target/release/bundle/dmg/GradeScope_1.0.0_aarch64.dmg`
 
 > 注意：本机是 Apple Silicon (arm64)，本地打出的就是 arm64 版。要打 Intel 版需要 `rustup target add x86_64-apple-darwin` 后加 `--target x86_64-apple-darwin`。
 

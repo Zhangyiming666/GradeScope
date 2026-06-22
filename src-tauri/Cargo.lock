@@ -1342,7 +1342,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "gradepilot"
+name = "gradescope"
 version = "1.0.0"
 dependencies = [
  "serde",

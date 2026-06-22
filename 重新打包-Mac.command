@@ -1,5 +1,5 @@
 #!/bin/zsh
-# GradePilot 一键重新打包 Mac 版
+# GradeScope 一键重新打包 Mac 版
 # 用法：双击本文件，或在终端运行  ./重新打包-Mac.command
 # 每次更新代码后跑这个就行，会自动重新构建前端 + 打出新的 .app 和 .dmg
 
@@ -27,15 +27,15 @@ pnpm exec tauri build --bundles app,dmg
 
 echo ""
 echo "✅ 完成！新产物在："
-echo "   App: $PROJECT_DIR/src-tauri/target/release/bundle/macos/GradePilot.app"
+echo "   App: $PROJECT_DIR/src-tauri/target/release/bundle/macos/GradeScope.app"
 echo "   DMG: $PROJECT_DIR/src-tauri/target/release/bundle/dmg/"
 echo ""
 
 # 顺手把产物复制到好找的文件夹
 OUT="$PROJECT_DIR/构建产物-Mac版"
 mkdir -p "$OUT"
-rm -rf "$OUT/GradePilot.app"
-cp -R "$PROJECT_DIR/src-tauri/target/release/bundle/macos/GradePilot.app" "$OUT/"
+rm -rf "$OUT/GradeScope.app"
+cp -R "$PROJECT_DIR/src-tauri/target/release/bundle/macos/GradeScope.app" "$OUT/"
 cp -f "$PROJECT_DIR"/src-tauri/target/release/bundle/dmg/*.dmg "$OUT/" 2>/dev/null || true
 echo "📦 已复制到：$OUT"
 

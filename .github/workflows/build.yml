@@ -55,8 +55,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tagName: ${{ github.ref_type == 'tag' && github.ref_name || '' }}
-          releaseName: "GradePilot ${{ github.ref_name }}"
-          releaseBody: "自动构建的 GradePilot 桌面版。Mac 用户下载 .dmg，Windows 用户下载 .exe 安装包。"
+          releaseName: "GradeScope ${{ github.ref_name }}"
+          releaseBody: "自动构建的 GradeScope 桌面版。Mac 用户下载 .dmg，Windows 用户下载 .exe 安装包。"
           releaseDraft: true
           prerelease: false
           args: ${{ matrix.args }}
@@ -66,7 +66,7 @@ jobs:
         if: github.ref_type != 'tag'
         uses: actions/upload-artifact@v4
         with:
-          name: gradepilot-${{ matrix.platform }}-${{ strategy.job-index }}
+          name: gradescope-${{ matrix.platform }}-${{ strategy.job-index }}
           path: |
             src-tauri/target/**/release/bundle/**/*.dmg
             src-tauri/target/**/release/bundle/**/*.app
