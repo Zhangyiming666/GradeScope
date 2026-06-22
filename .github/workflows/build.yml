@@ -1,6 +1,6 @@
 name: Build Tauri Releases
 
-# 在打 tag（v1.0.0 等）时构建 Windows/macOS 安装包并发布；也可在 Actions 页面手动触发。
+# 在打 tag（v1.0.1 等）时构建 Windows/macOS 安装包并发布；也可在 Actions 页面手动触发。
 on:
   push:
     tags:

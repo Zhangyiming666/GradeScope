@@ -1,6 +1,6 @@
 [package]
 name = "gradescope"
-version = "1.0.0"
+version = "1.0.1"
 description = "GradeScope - 学业成绩管理"
 authors = ["GradeScope"]
 edition = "2021"

@@ -31,7 +31,7 @@ pnpm exec tauri build --bundles app,dmg
 
 构建产物位置：
 - App：`src-tauri/target/release/bundle/macos/GradeScope.app`
-- DMG：`src-tauri/target/release/bundle/dmg/GradeScope_1.0.0_aarch64.dmg`
+- DMG：`src-tauri/target/release/bundle/dmg/GradeScope_1.0.1_aarch64.dmg`
 
 > 注意：本机是 Apple Silicon (arm64)，本地打出的就是 arm64 版。要打 Intel 版需要 `rustup target add x86_64-apple-darwin` 后加 `--target x86_64-apple-darwin`。
 
@@ -52,8 +52,8 @@ pnpm exec tauri dev
 1. 把项目推到 GitHub。
 2. 打一个 tag 触发构建并自动发 Release：
    ```bash
-   git tag v1.0.0
-   git push origin v1.0.0
+   git tag v1.0.1
+   git push origin v1.0.1
    ```
 3. Actions 会在 Windows 和 macOS 机器上分别构建安装包，产物自动上传到一个 **Release**（Windows 下 `.exe`，macOS 下 `.dmg`）。
 4. 也可以在 GitHub 的 **Actions 页面手动触发**（workflow_dispatch），产物作为 Artifact 下载；手动触发不会自动创建 Release。
