@@ -1,0 +1,19 @@
+node_modules
+dist
+.DS_Store
+.vite
+coverage
+*.tsbuildinfo
+src-tauri/target/
+构建产物-Mac版/
+GradePilot Launcher.app/
+.gradepilot-server.log
+.gradepilot-server.pid
+*.app
+*.dmg
+*.exe
+*.msi
+zym.json
+test.json
+notion-学业中心导入.csv
+模板.csv
