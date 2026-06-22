@@ -1,26 +1,30 @@
 # GradeScope
 
-GradeScope is a local-first desktop app for managing course grades, GPA records, and target score planning.
+GradeScope 是一款用于管理课程成绩、GPA 记录以及目标分数规划的 App。所有数据都保存在你本地的数据文件里，不上传云端。
 
-## Download
+## 功能特性
 
-Installers are published on the [Releases](https://github.com/Zhangyiming666/GradeScope/releases) page.
+- **学期与课程管理**：按学期组织课程，记录学分、课程状态（未开始 / 进行中 / 已完成）以及是否计入 GPA。
+- **考核分项与权重**：为每门课拆分考核分项（如作业、期中、期末），按权重百分比管理，分项成绩可标记为实际、预测或未知。
+- **成绩与 GPA 预测**：根据已知分项自动推算课程原始分、换算分、绩点（GPA）和等级，并计算学期及累计 GPA。
+- **多套换算规则**：内置上海大学（SHU）课程成绩规则和 UTS 线性换算规则，支持原始分到换算分的线性转换与等级 / 绩点分段。
+- **目标分数规划**：设定目标换算分，反推所需的原始分，辅助规划剩余考核要拿多少分。
+- **仪表盘与趋势图**：在仪表盘查看学期概览、GPA 趋势图（可在 GPA 与平均分之间切换）以及成绩库。
+- **CSV 导入导出**：通过 CSV 批量导入 / 导出学期、课程和考核分项数据。
 
-## Development
+## 下载安装
 
-```bash
-pnpm install
-pnpm dev
-```
+安装包发布在 [Releases](https://github.com/Zhangyiming666/GradeScope/releases) 页面，提供 macOS（dmg）和 Windows（nsis）版本。
 
-Build the web app:
+## 技术栈
 
-```bash
-pnpm build
-```
+- 前端：React 18 + TypeScript + Vite
+- 样式：Tailwind CSS
+- 状态管理：Zustand
+- 本地存储：Dexie（IndexedDB），桌面版通过 Tauri 读写本地 JSON 数据文件
+- 图表：Recharts
+- 桌面壳：Tauri 2（Rust）
 
-Build desktop bundles with Tauri:
+## 数据存储
 
-```bash
-pnpm exec tauri build
-```
+桌面版（Tauri）会把数据保存为本地的 `*.gradepilot.json` 文件，并在下次启动时尝试自动加载上次打开的文件。你可以新建、打开或导出数据文件，方便备份和迁移。
