@@ -1,6 +1,6 @@
-name: Build Tauri App
+name: Build Tauri Windows App
 
-# 在打 tag（v1.0.0 等）时构建并发布；也可在 Actions 页面手动触发。
+# 在打 tag（v1.0.0 等）时构建 Windows 安装包并发布；也可在 Actions 页面手动触发。
 on:
   push:
     tags:
@@ -8,21 +8,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-windows:
     permissions:
       contents: write
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - platform: "macos-latest"   # Apple Silicon (arm64)
-            args: "--target aarch64-apple-darwin"
-          - platform: "macos-latest"   # Intel (x86_64)
-            args: "--target x86_64-apple-darwin"
-          - platform: "windows-latest"
-            args: ""
-
-    runs-on: ${{ matrix.platform }}
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
 
@@ -38,8 +27,6 @@ jobs:
 
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable
-        with:
-          targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
 
       - name: Rust cache
         uses: swatinem/rust-cache@v2
@@ -56,20 +43,17 @@ jobs:
         with:
           tagName: ${{ github.ref_type == 'tag' && github.ref_name || '' }}
           releaseName: "GradeScope ${{ github.ref_name }}"
-          releaseBody: "自动构建的 GradeScope 桌面版。Mac 用户下载 .dmg，Windows 用户下载 .exe 安装包。"
+          releaseBody: "自动构建的 GradeScope Windows 版。下载 .exe 安装包即可安装。"
           releaseDraft: true
           prerelease: false
-          args: ${{ matrix.args }}
+          args: "--bundles nsis"
 
       # 当不是 tag 触发（手动运行）时，把产物作为 Artifact 上传，方便直接下载
       - name: Upload artifacts (manual runs)
         if: github.ref_type != 'tag'
         uses: actions/upload-artifact@v4
         with:
-          name: gradescope-${{ matrix.platform }}-${{ strategy.job-index }}
+          name: gradescope-windows
           path: |
-            src-tauri/target/**/release/bundle/**/*.dmg
-            src-tauri/target/**/release/bundle/**/*.app
             src-tauri/target/**/release/bundle/**/*.exe
-            src-tauri/target/**/release/bundle/**/*.msi
           if-no-files-found: ignore

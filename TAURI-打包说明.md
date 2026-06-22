@@ -55,16 +55,16 @@ pnpm exec tauri dev
    git tag v1.0.0
    git push origin v1.0.0
    ```
-3. Actions 会在 Windows + macOS(arm64/Intel) 机器上分别构建，产物自动上传到一个 **draft Release**（Mac 下 `.dmg`，Windows 下 `.exe`/`.msi`）。
+3. Actions 会在 Windows 机器上构建 NSIS 安装包，产物自动上传到一个 **draft Release**（Windows 下 `.exe`）。
 4. 也可以在 GitHub 的 **Actions 页面手动触发**（workflow_dispatch），产物作为 Artifact 下载。
 
 ### 方案 B：在一台 Windows 机器上本地打
 在 Windows 上装好 Node + pnpm + Rust（rustup）+ Microsoft C++ Build Tools (含 WebView2)，然后：
 ```powershell
 pnpm install
-pnpm exec tauri build
+pnpm exec tauri build --bundles nsis
 ```
-产物在 `src-tauri\target\release\bundle\nsis\` 和 `...\msi\`。
+产物在 `src-tauri\target\release\bundle\nsis\`。
 
 ---
 
